@@ -41,7 +41,7 @@ Versão atualizada em 9-12-2023
 
 
 Para acessar o projeto voce precisa baixar uma copia do meu projeto
-neste link github >> [Projeto Final Github](https://github.com/dvcm/ProjetoFinal)  realizar o download na sua maquina e configurar
+neste link github >> [Projeto Final Github](https://github.com/dvcm/Twitter)  realizar o download na sua maquina e configurar
 para rodar em python na versão 3.10
 
 
