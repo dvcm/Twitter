@@ -133,6 +133,9 @@ Password (again):
 This password is too short. It must contain at least 8 characters. (Criar uma senha forte)
 This password is entirely numeric.
 
+Para se logar no sistema voce pode usar o usuario e a senha
+Adm
+Ebac2023
 
 Caso queria visualizar os dados dentro do banco de dados.
 
