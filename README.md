@@ -41,8 +41,20 @@ Versão atualizada em 9-12-2023
 
 
 Para acessar o projeto voce precisa baixar uma copia do meu projeto
-neste link github >> [Projeto Final Github](https://github.com/dvcm/Twitter)  realizar o download na sua maquina e configurar
+neste link github >> [Projeto Final Github](https://github.com/dvcm/Twitter)  
+realizar o download na sua maquina e configurar
 para rodar em python na versão 3.10
+
+Para rodar o projeto voce precisa estar na pasta social
+11:28:48 ツ ebac:(main)~/PycharmProjects/Twitter/social >$  python3 manage.py runserver
+
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+December 11, 2023 - 14:28:51
+Django version 5.0, using settings 'social.settings'
+Starting development server at http://127.0.0.1:8000/
 
 
 Pacotes necessários
