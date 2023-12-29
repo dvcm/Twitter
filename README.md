@@ -33,10 +33,6 @@ Lista de usuários
 
 Para ver o projeto rodando voce deve rodar no terminal
 
-![](/home/ebac/PycharmProjects/Twitter/social/images/terminal.png)
-
-![](/home/ebac/PycharmProjects/Twitter/social/images/python2 managepy runserver.png)
-
 Versão atualizada em 9-12-2023
 
 
@@ -44,6 +40,94 @@ Para acessar o projeto voce precisa baixar uma copia do meu projeto
 neste link github >> [Projeto Final Github](https://github.com/dvcm/Twitter)  
 realizar o download na sua maquina e configurar
 para rodar em python na versão 3.10
+
+Voce precisa rodar este comando
+[~/PycharmProjects/Twitter/social]
+
+Rodar os codigos abaixo no terminal
+source env/bin/activate
+
+python3 manage.py runserver
+
+
+Caso apresente este tipo de erro
+Traceback (most recent call last):
+  File "/home/patrick/PycharmProjects/Twitter/social/manage.py", line 11, in main
+    from django.core.management import execute_from_command_line
+ModuleNotFoundError: No module named 'django'
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "/home/patrick/PycharmProjects/Twitter/social/manage.py", line 22, in <module>
+    main()
+  File "/home/patrick/PycharmProjects/Twitter/social/manage.py", line 13, in main
+    raise ImportError(
+ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? Did you forget to activate a virtual environment?
+
+>> entao rode este codigo
+>> pip install django
+
+Collecting django
+  Using cached Django-5.0-py3-none-any.whl.metadata (4.1 kB)
+Collecting asgiref>=3.7.0 (from django)
+  Using cached asgiref-3.7.2-py3-none-any.whl.metadata (9.2 kB)
+Collecting sqlparse>=0.3.1 (from django)
+  Using cached sqlparse-0.4.4-py3-none-any.whl (41 kB)
+Using cached Django-5.0-py3-none-any.whl (8.1 MB)
+Using cached asgiref-3.7.2-py3-none-any.whl (24 kB)
+Installing collected packages: sqlparse, asgiref, django
+Successfully installed asgiref-3.7.2 django-5.0 sqlparse-0.4.4
+
+>> Error
+>> $ python3 manage.py runserver
+Watching for file changes with StatReloader
+Performing system checks...
+
+Exception in thread django-main-thread:
+Traceback (most recent call last):
+  File "/usr/lib/python3.11/threading.py", line 1045, in _bootstrap_inner
+    self.run()
+  File "/usr/lib/python3.11/threading.py", line 982, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/patrick/PycharmProjects/Twitter/social/env/lib/python3.11/site-packages/django/utils/autoreload.py", line 64, in wrapper
+    fn(*args, **kwargs)
+  File "/home/patrick/PycharmProjects/Twitter/social/env/lib/python3.11/site-packages/django/core/management/commands/runserver.py", line 133, in inner_run
+    self.check(display_num_errors=True)
+  File "/home/patrick/PycharmProjects/Twitter/social/env/lib/python3.11/site-packages/django/core/management/base.py", line 556, in check
+    raise SystemCheckError(msg)
+django.core.management.base.SystemCheckError: SystemCheckError: System check identified some issues:
+
+ERRORS:
+musker.Profile.profile_image: (fields.E210) Cannot use ImageField because Pillow is not installed.
+        HINT: Get Pillow at https://pypi.org/project/Pillow/ or run command "python -m pip install Pillow".
+
+Algo deu errado ao tentar rodar o runserver!
+
+voltei ao terminal e rodei
+
+>>  python3 -m pip install Pillow
+Collecting Pillow
+  Using cached Pillow-10.1.0-cp311-cp311-manylinux_2_28_x86_64.whl.metadata (9.5 kB)
+Using cached Pillow-10.1.0-cp311-cp311-manylinux_2_28_x86_64.whl (3.6 MB)
+Installing collected packages: Pillow
+Successfully installed Pillow-10.1.0
+
+>>$ python3 manage.py runserver
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+December 29, 2023 - 12:38:13
+Django version 5.0, using settings 'social.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+
+[29/Dec/2023 12:38:17] "GET / HTTP/1.1" 200 6573
+[29/Dec/2023 12:38:18] "GET /media/images/default_1NXqUU3.jpg HTTP/1.1" 304 0
+[29/Dec/2023 12:38:18] "GET /static/images/default_profile_pic.png HTTP/1.1" 304 0
+
+Se vc chegou ate aqui e deu certo! o projeto esta funcionando!
 
 Para rodar o projeto voce precisa estar na pasta social
 11:28:48 ツ ebac:(main)~/PycharmProjects/Twitter/social >$  python3 manage.py runserver
