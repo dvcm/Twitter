@@ -3,6 +3,20 @@ from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 
 
+from django.db import models
+
+class Comentario(models.Model):
+    nome = models.CharField(max_length=255,null=True)
+    texto = models.TextField(max_length=255)
+    data_postagem = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.texto
+
+
+
+
+
 # create meep model
 class Meep(models.Model):
     user = models.ForeignKey(

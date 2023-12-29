@@ -1,8 +1,12 @@
 from django import forms
-from .models import Meep, Profile
+from .models import Meep, Profile, Comentario
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
+class ComentarioForm(forms.ModelForm):
+    class Meta:
+        model = Comentario
+        fields = ['nome', 'texto']
 
 # Profile Extras Form
 class ProfilePicForm(forms.ModelForm):
@@ -48,7 +52,7 @@ class SignUpForm(UserCreationForm):
         self.fields['username'].widget.attrs['placeholder'] = 'Usuário'
         self.fields['username'].label = ''
         self.fields[
-            'username'].help_text = '<span class="form-text text-muted"><small>Obrigatório. 150 caracteres ou menos. Letras, dígitos  @/./+/-/_ .</small></span>'
+            'username'].help_text = ('<span class="form-text text-muted"><small>Certifique-se de usar apenas letras e símbolos ao preencher o formulário de cadastro.''.</small></span>')
 
         self.fields['password1'].widget.attrs['class'] = 'form-control'
         self.fields['password1'].widget.attrs['placeholder'] = 'Senha'

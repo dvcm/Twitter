@@ -1,12 +1,25 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from .models import Profile, Meep
-from .forms import MeepForm, SignUpForm, ProfilePicForm
+from .models import Profile, Meep, Comentario
+from .forms import MeepForm, SignUpForm, ProfilePicForm, ComentarioForm
 from django.contrib.auth import authenticate, login, logout
+from django.http import JsonResponse
 from django.contrib.auth.forms import UserCreationForm
 from django import forms
 from django.contrib.auth.models import User
 
+
+def postar_comentario(request):
+    if request.method == 'POST':
+        form = ComentarioForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect(
+                'home')  # Substitua 'pagina_de_comentarios' pela URL desejada após postar um comentário
+    else:
+        form = ComentarioForm()
+
+    return render(request, 'home.html', {'form': form})
 
 def home(request):
     if request.user.is_authenticated:
@@ -134,9 +147,7 @@ def meep_like(request, pk):
 
         return redirect(request.META.get("HTTP_REFERER"))
 
-
-
-
     else:
         messages.success(request, ("Você deve estar logado para ver essa página..."))
         return redirect('home')
+
