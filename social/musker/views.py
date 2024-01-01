@@ -1,12 +1,10 @@
-from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from .models import Profile, Meep, Comentario
-from .forms import MeepForm, SignUpForm, ProfilePicForm, ComentarioForm
 from django.contrib.auth import authenticate, login, logout
-from django.http import JsonResponse
-from django.contrib.auth.forms import UserCreationForm
-from django import forms
 from django.contrib.auth.models import User
+from django.shortcuts import render, redirect, get_object_or_404
+
+from .forms import MeepForm, ComentarioForm
+from .models import Profile, Meep, Post, Relationship
 
 
 def postar_comentario(request):
@@ -21,11 +19,16 @@ def postar_comentario(request):
 
     return render(request, 'home.html', {'form': form})
 
+
 def home(request):
     if request.user.is_authenticated:
         form = MeepForm(request.POST or None)
+        posts = Post.objects.all()
         if request.method == "POST":
             if form.is_valid():
+                post = form.save(commit=False)
+                post.user = request.user
+                post.save()
                 meep = form.save(commit=False)
                 meep.user = request.user
                 meep.save()
@@ -33,16 +36,20 @@ def home(request):
                 return redirect('home')
 
         meeps = Meep.objects.all().order_by("-created_at")
-        return render(request, 'home.html', {"meeps":meeps, "form":form})
+        return render(request, 'home.html', {"meeps": meeps, "form": form})
     else:
         meeps = Meep.objects.all().order_by("-created_at")
-        return render(request, 'home.html', {"meeps":meeps})
+        return render(request, 'home.html', {"meeps": meeps})
+
+        form = PostForm()
+        context = {'posts': posts, 'form': form}
+        return render(request, 'newsfeed.html', context)
 
 
 def profile_list(request):
     if request.user.is_authenticated:
         profiles = Profile.objects.exclude(user=request.user)
-        return render(request, 'profile_list.html', {"profiles":profiles})
+        return render(request, 'profile_list.html', {"profiles": profiles})
     else:
         messages.success(request, ("Você deve estar logado para ver esta página..."))
         return redirect('home')
@@ -67,7 +74,7 @@ def profile(request, pk):
             # Save the profile
             current_user_profile.save()
 
-        return render(request, "profile.html", {"profile":profile, "meeps":meeps})
+        return render(request, "profile.html", {"profile": profile, "meeps": meeps})
     else:
         messages.success(request, ("Você deve estar logado para ver esta página..."))
         return redirect('home')
@@ -113,7 +120,7 @@ def register_user(request):
             messages.success(request, ("Você se registrou com sucesso! Bem-vindo!"))
             return redirect('home')
 
-    return render(request, "register.html", {'form':form})
+    return render(request, "register.html", {'form': form})
 
 
 def update_user(request):
@@ -131,7 +138,7 @@ def update_user(request):
             messages.success(request, "Seu perfil foi atualizado!")
             return redirect('home')
 
-        return render(request, "update_user.html", {'user_form':user_form, 'profile_form':profile_form})
+        return render(request, "update_user.html", {'user_form': user_form, 'profile_form': profile_form})
     else:
         messages.success(request, ("Você deve estar logado para ver essa página..."))
         return redirect('home')
@@ -150,4 +157,3 @@ def meep_like(request, pk):
     else:
         messages.success(request, ("Você deve estar logado para ver essa página..."))
         return redirect('home')
-

@@ -1,12 +1,42 @@
 from django import forms
-from .models import Meep, Profile, Comentario
+from .models import Meep, Profile, Comentario, Post
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
+
+
+class UserRegisterForm(UserCreationForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'username', 'email', 'password1', 'password2']
+
+
+class PostForm(forms.ModelForm):
+    content = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control w-100',
+                                                           'id': 'contentsBox', 'rows': '3',
+                                                           'placeholder': '¿Qué está pasando?'}))
+
+    class Meta:
+        model = Post
+        fields = ['content']
+
+
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ['first_name', 'username']
+
+
+class ProfileUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Profile
+        fields = ['image', 'bio']
+
 
 class ComentarioForm(forms.ModelForm):
     class Meta:
         model = Comentario
         fields = ['nome', 'texto']
+
 
 # Profile Extras Form
 class ProfilePicForm(forms.ModelForm):
@@ -14,15 +44,15 @@ class ProfilePicForm(forms.ModelForm):
 
     class Meta:
         model = Profile
-        fields = ('profile_image', )
+        fields = ('profile_image',)
 
 
 class MeepForm(forms.ModelForm):
     body = forms.CharField(required=True,
                            widget=forms.widgets.Textarea(
                                attrs={
-                                   "placeholder":"Digite seu post!",
-                                   "class":"form-control",
+                                   "placeholder": "Digite seu post!",
+                                   "class": "form-control",
                                }
                            ),
                            label="",
@@ -35,11 +65,11 @@ class MeepForm(forms.ModelForm):
 
 class SignUpForm(UserCreationForm):
     email = forms.EmailField(label="",
-                             widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Email'}))
+                             widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Email'}))
     first_name = forms.CharField(label="", max_length=100,
-                                 widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Nome'}))
+                                 widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Nome'}))
     last_name = forms.CharField(label="", max_length=100,
-                                widget=forms.TextInput(attrs={'class':'form-control', 'placeholder':'Sobrenome'}))
+                                widget=forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Sobrenome'}))
 
     class Meta:
         model = User
@@ -52,7 +82,8 @@ class SignUpForm(UserCreationForm):
         self.fields['username'].widget.attrs['placeholder'] = 'Usuário'
         self.fields['username'].label = ''
         self.fields[
-            'username'].help_text = ('<span class="form-text text-muted"><small>Certifique-se de usar apenas letras e símbolos ao preencher o formulário de cadastro.''.</small></span>')
+            'username'].help_text = (
+            '<span class="form-text text-muted"><small>Certifique-se de usar apenas letras e símbolos ao preencher o formulário de cadastro.''.</small></span>')
 
         self.fields['password1'].widget.attrs['class'] = 'form-control'
         self.fields['password1'].widget.attrs['placeholder'] = 'Senha'
