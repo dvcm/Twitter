@@ -23,7 +23,10 @@
     </div>
     <div class="col-md-8">
       <div class="card-body">
-        <h5 class="card-title">{{ profile.user.username }}</h5>
+        <h5 class="card-title">User id: {{ profile.user.id }}</h5>
+        <h5 class="card-title">First name: {{ profile.user.first_name }}</h5>
+        <h5 class="card-title">Last name: <a href="{% url 'profile' profile.user.id %}">{{ profile.user.last_name }} </a></h5>
+        <h5 class="card-title">Email: <a href="{% url 'profile' profile.user.id %}">{{ profile.user.email }} </a></h5>
         <p class="card-text"><a href="{% url 'profile' profile.user.id %}">@{{ profile.user.username|lower }}</a></p>
         <br/><br/>
         <p class="card-text"><small class="text-muted">Ultima atualização: {{ profile.date_modified }}</small></p>

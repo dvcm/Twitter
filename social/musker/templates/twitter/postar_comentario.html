@@ -1,0 +1,8 @@
+<!-- postar_comentario.html -->
+
+<h2>Postar Comentários</h2>
+<form method="post" action="{% url 'postar_comentario' %}">
+    {% csrf_token %}
+    {{ form.as_p }} hjhjh
+    <button type="submit">Postar</button>
+</form>

@@ -5,13 +5,13 @@
     <div class="twitter-login-box">
         <header>
             <img src="https://static01.nyt.com/images/2014/08/10/magazine/10wmt/10wmt-jumbo-v4.jpg?quality=90&auto=webp" alt="twitter logo">
-            <h1>Registrate en Twitter</h1>
+            <h1>Registrar Twitter</h1>
         </header>
 
         <form method="post">
             {% csrf_token %}
             <div class="input-wrapper">
-                <label for="user-name-id">First Name</label>
+                <label for="user-name-id">Nome</label>
                 {{ form.first_name }}
             </div>
             <div class="input-wrapper">

@@ -2,6 +2,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 from django.utils import timezone
+from django.shortcuts import get_object_or_404
+from django.contrib.auth.models import User
+
 
 
 # create meep model
@@ -76,7 +79,7 @@ class Relationship(models.Model):
 class Comentario(models.Model):
     nome = models.CharField(max_length=255, null=True)
     texto = models.TextField(max_length=255)
-    data_postagem = models.DateTimeField(auto_now_add=True)
+    data_postagem = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         return self.texto

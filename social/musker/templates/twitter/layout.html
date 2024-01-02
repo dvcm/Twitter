@@ -23,7 +23,7 @@
         <nav class="navbar navbar-expand-lg navbar-light">
             <a class="navbar-brand" style="color: white;" href="#">
                 <!-- Twitter logo -->
-                <img src="{% static 'img/twitter-brands.svg' %}" width="30" height="30" class="d-inline-block align-top" alt="">
+                <img src="https://static01.nyt.com/images/2014/08/10/magazine/10wmt/10wmt-jumbo-v4.jpg?quality=90&auto=webp" width="40" height="30" class="d-inline-block align-top" alt="twitter logo">
                 <!-- Twitter logo -->
                 Twttr Clone
             </a>
@@ -32,8 +32,16 @@
 
                 </ul>
                 <!-- Nav Bar -->
-                <a href="{% url 'home' %}" class="btn text-white my-2 my-sm-0" type="submit">Inicio</a>
+                <a href="{% url 'home' %}" class="btn text-white my-2 my-sm-0" type="submit">Home</a>
+                <a href="{% url 'admin' %}" class="btn text-white my-2 my-sm-0" type="submit">admin</a>
+                <a href="{% url 'postar_comentario' %}" class="btn text-white my-2 my-sm-0" type="submit">Postar</a>
+                <a href="{% url 'profile_list' %}" class="btn text-white my-2 my-sm-0" type="submit">Lista Perfil</a>
+                <a href="{% url 'update_user' %}" class="btn text-white my-2 my-sm-0" type="submit">Editar user</a>
+
+                <a href="{% url 'login' %}" class="btn text-white my-2 my-sm-0" type="submit">Login</a>
                 <a href="{% url 'logout' %}" class="btn text-white my-2 my-sm-0" type="submit">Logout</a>
+
+
                 <!-- Nav Bar -->
             </div>
         </nav>
@@ -113,7 +121,7 @@
                         <img src="https://toppng.com/uploads/preview/roger-berry-avatar-placeholder-11562991561rbrfzlng6h.png"
                             alt="" class="avator">
                         <div class="tweet-header-info">
-                            * based snow bunny <span>@yumjeezy</span><span>. Jun 27
+                            * Alguem se logou <span>@patrick</span><span>. Jun 27
                             </span>
                             <p>🔥 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
                                 ut labore et dolore magna aliqua. </p>
